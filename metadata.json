@@ -1,0 +1,8 @@
+{
+  "name": "Quick Notes",
+  "description": "Take quick notes inside Gnome shell!",
+  "uuid": "quick-notes@thewunsz.pl",
+  "shell-version": [
+    "45"
+  ]
+}

@@ -4,5 +4,6 @@
   "uuid": "quick-notes@thewunsz.pl",
   "shell-version": [
     "45"
-  ]
+  ],
+  "gettext-domain": "quick-notes@thewunsz.pl"
 }

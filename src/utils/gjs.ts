@@ -1,6 +1,5 @@
 import GObject from 'gi://GObject';
 
-
 // Taken from https://github.com/material-shell/material-shell/blob/main/src/utils/gjs.ts
 /// Decorator function to call `GObject.registerClass` with the given class.
 /// Use like

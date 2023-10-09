@@ -1,10 +1,11 @@
 import commonjs from '@rollup/plugin-commonjs';
+import eslint from '@rollup/plugin-eslint';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import cleanup from 'rollup-plugin-cleanup';
 import copy from 'rollup-plugin-copy';
+import del from 'rollup-plugin-delete';
 import styles from 'rollup-plugin-styles';
-import del from 'rollup-plugin-delete'
 
 const buildPath = 'dist';
 
@@ -21,7 +22,7 @@ export default [
       exports: 'default',
       assetFileNames: '[name][extname]',
     },
-    external: ['resource:///*'],
+    external: [/^resource:\/+/, /^gi:\/+/],
     plugins: [
       del({ targets: 'dist/*' }),
       commonjs(),
@@ -31,17 +32,16 @@ export default [
       typescript({
         tsconfig: './tsconfig.json',
       }),
+      eslint({}),
       styles({
-        mode: ['extract', `stylesheet.css`],
+        mode: ['extract', 'stylesheet.css'],
       }),
       copy({
-        targets: [
-          { src: './src/metadata.json', dest: `${buildPath}` }
-        ],
+        targets: [{ src: './src/metadata.json', dest: `${buildPath}` }],
       }),
       cleanup({
         comments: 'none',
       }),
     ],
-  }
+  },
 ];

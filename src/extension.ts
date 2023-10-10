@@ -4,19 +4,30 @@ import { Extension } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 
 import Indicator from './components/Indicator';
+import NotePanel from './components/NotePanel';
+import store from './store';
 
 export default class NotesExtension extends Extension {
-  private _indicator: Indicator | null = null;
+  private indicator: Indicator | null = null;
+  private notePanel: NotePanel | null = null;
 
   enable() {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    this._indicator = new Indicator();
-    Main.panel.addToStatusArea(this.uuid, this._indicator);
+    store.init();
+
+    this.notePanel = new NotePanel();
+    Main.layoutManager.addTopChrome(this.notePanel);
+
+    this.indicator = new Indicator(this.notePanel);
+    Main.panel.addToStatusArea(this.uuid, this.indicator);
   }
 
   disable() {
-    this._indicator?.destroy();
-    this._indicator = null;
+    this.notePanel?.destroy();
+    this.notePanel = null;
+
+    this.indicator?.destroy();
+    this.indicator = null;
+
+    store.reset();
   }
 }

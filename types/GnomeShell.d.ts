@@ -1,5 +1,5 @@
 declare module 'resource:///org/gnome/shell/extensions/extension.js' {
-  import Gio from '@girs/gio-2.0'
+  import Gio from '@girs/gio-2.0';
 
   export function gettext(str: string): string;
 
@@ -11,9 +11,9 @@ declare module 'resource:///org/gnome/shell/extensions/extension.js' {
     uuid: string;
     path: string;
     dir: Gio.File;
-    'settings-schema': Gio.Settings
+    'settings-schema': Gio.Settings;
     'gettext-domain': string;
-  }
+  };
 
   export class Extension {
     static lookupByURL(url: string): Extension;
@@ -62,13 +62,6 @@ declare module 'resource:///org/gnome/shell/extensions/extension.js' {
 
 declare module 'resource:///org/gnome/shell/ui/panelMenu.js' {
   export * from '@girs/gnome-shell/src/ui/panelMenu';
-  //
-  // export const Button: typeof GnomeShell.ui.panelMenu.Button;
-  // export const ButtonBox: typeof GnomeShell.ui.panelMenu.ButtonBox;
-  // export const SystemIndicator: typeof GnomeShell.ui.panelMenu.SystemIndicator;
-
-  // export GnomeShell.ui.panelMenu;
-  // ...GnomeShell.ui.panelMenu
 }
 
 declare module 'resource:///org/gnome/shell/ui/popupMenu.js' {
@@ -77,4 +70,8 @@ declare module 'resource:///org/gnome/shell/ui/popupMenu.js' {
 
 declare module 'resource:///org/gnome/shell/ui/main.js' {
   export * from '@girs/gnome-shell/src/ui/main';
+}
+
+declare module 'resource:///org/gnome/shell/ui/layout.js' {
+  export * from '@girs/gnome-shell/src/ui/layout';
 }
